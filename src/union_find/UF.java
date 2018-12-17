@@ -43,14 +43,4 @@ public class UF {
             count--;
         }
     }
-    public static void main(String [] args){
-        int N=10;
-        UF uf=new UF(N);
-        uf.union ( 1,2 );
-        uf.union(2,4);
-        uf.union ( 3,8 );
-        uf.union ( 9,6 );
-        uf.union ( 3,7 );
-        System.out.println ( uf.count );
-    }
 }

@@ -20,6 +20,9 @@ public class WeightedQuickUnionUF {
             sz[i]=1;
         }
     }
+    public WeightedQuickUnionUF() {
+    }
+
     public  int count(){
         //返回连通分量数
         return count;
