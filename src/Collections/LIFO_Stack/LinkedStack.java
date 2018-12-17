@@ -2,6 +2,11 @@ package Collections.LIFO_Stack;
 
 import java.util.Iterator;
 
+/**
+ * @version 链式栈自定义实现遍历的算法
+ * @author 马苓珂
+ * @param <Item>
+ */
 public class LinkedStack<Item> implements Stack {
     private Node first;//栈顶
     private int N;//元素数量

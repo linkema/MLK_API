@@ -1,5 +1,9 @@
 package union_find;
 
+/**
+ * @version 最终版压缩路径的加权UF算法
+ * @author 马苓珂
+ */
 public class WeightedQuickUnionUF {
     private int [] id;//父链接数组（由触点索引）
     private int [] sz;//(由触点索引)的各个根节点所对应的分量大小
@@ -25,8 +29,9 @@ public class WeightedQuickUnionUF {
     }
     public int find(int q) {
         //跟随链接找到根节点
+        //增加一个循环来将从q到根节点的路径上的每个触点都连接到根节点，使之能产生一棵高度为4的树
         while(q!=id[q]) q=id[q];
-        return q;
+        return id[q];
     }
     public void union(int p,int q){
         int i=find(p);
