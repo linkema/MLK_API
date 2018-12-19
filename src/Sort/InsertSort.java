@@ -1,7 +1,7 @@
 package Sort;
 
 public class InsertSort {
-    public static void sort(Comparable []arr){
+    public static void sort(Comparable[] arr){
         //插入排序的算法
         /**
             1.从第一个元素开始排序，将这个元素跟前一个元素进行比较
@@ -14,9 +14,8 @@ public class InsertSort {
             //比较前一个元素
             if(less(arr[i],arr[i-1])) {
                 //找到元素插入到合适的位置的索引
-                for (int j = 0; j < i; j++) {
-                    if(less(arr[i],arr[j]))
-                    exch(arr,i,j);
+                for (int j = i; j >0&&less ( arr[j],arr[j-1] ); j--) {
+                    exch(arr,j,j-1);
                 }
             }
         }
@@ -32,7 +31,7 @@ public class InsertSort {
         arr[i]=arr[j];
         arr[j]=temp;
     }
-    private void show(Comparable []arr){
+    private static void show(Comparable[] arr){
         //打印出排序的对象
         for(Object i:arr){
             System.out.println(i+" ");
@@ -41,10 +40,16 @@ public class InsertSort {
     public static boolean isSorted(Comparable []arr){
         //判断是否已经排序
         boolean flag=false;
-        for (int i = 0; i < arr.length; i++)
+        for (int i = 1; i < arr.length; i++)
             if(less(arr[i],arr[i-1])) return flag;
             flag=true;
             return flag;
+    }
+    public static void main(String [] args){
+        Comparable[]a={34,45,12,45,85,69};
+        InsertSort.sort ( a );
+        System.out.println ( InsertSort.isSorted ( a ) );
+        InsertSort.show(a);
     }
 }
 

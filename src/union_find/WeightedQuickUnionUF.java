@@ -50,4 +50,8 @@ public class WeightedQuickUnionUF {
         }
         count--;
     }
+    private int newSite(){
+        int size=0;
+        return size;
+    }
 }

@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class RandomGrid extends WeightedQuickUnionUF{
+    public RandomGrid(){}
     private int count;
     private int [][]id;
     private int [][]sz;
@@ -26,18 +27,19 @@ public class RandomGrid extends WeightedQuickUnionUF{
     public int count(){
         return count;
     }
-    public boolean connected(int p,int q,int i,int j,int N){
-        return find(p,q,N)==find(i,j,N);
+    public boolean connected(Connection c1,Connection c2,int N){
+
+        return find(c1,N)==find(c2,N);
     }
-    public int find(int p,int q,int N) {
+    public int find(Connection c,int N) {
         //跟随链接找到根节点
         //增加一个循环来将从q到根节点的路径上的每个触点都连接到根节点，使之能产生一棵高度为4的树
-        while((p*(N-1)+q)!=id[p][q]) break;
-        return id[p][q];
+        while((c.p*(N-1)+c.q)!=id[c.p][c.q]) break;
+        return id[c.p][c.q];
     }
-    public void union(int p,int q,int m,int n,int N){
-        int i=find(p,q,N );
-        int j=find(m,n,N);
+    public void union(Connection c1,Connection c2,int N){
+        int i=find(c1,N );
+        int j=find(c2,N);
         if(i==j) return;
         //将小树的根节点连接到大树的根节点
         if(sz[i/N][i%N-1]<sz[j/N][j%N-1]){
@@ -69,17 +71,19 @@ public class RandomGrid extends WeightedQuickUnionUF{
         }
     }
     private static int[][] generate(int n) {
+        RandomGrid rg=new RandomGrid ( n );
         Random r=new Random (  );
-        int p= r.nextInt (n );
+        int p= r.nextInt (n);
         int q=r.nextInt (n);
         int i=r.nextInt (n);
         int j=r.nextInt (n);
+        RandomGrid.Connection c1=rg.new Connection ( p,q );
+        RandomGrid.Connection c2=rg. new Connection ( i,j );
         boolean flag;
-        RandomGrid rg=new RandomGrid ( n );
         //while(rg.count!=1){
-            flag=rg.connected ( p,q,i,j,n );
+            flag=rg.connected ( c1,c2,n );
             if(!flag){
-                rg.union ( p,q,i,j,n );
+                rg.union ( c1,c2,n );
             }
         //}
         return rg.id;
