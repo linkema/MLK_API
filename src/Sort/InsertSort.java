@@ -12,14 +12,10 @@ public class InsertSort {
         int N=arr.length;//需要排序的数组的大小
         for (int i = 1; i < N; i++) {
             //比较前一个元素
-            if(less(arr[i],arr[i-1])) {
                 //找到元素插入到合适的位置的索引
-                for (int j = i; j >0&&less ( arr[j],arr[j-1] ); j--) {
+                for (int j = i; j >0&&less ( arr[j],arr[j-1] ); j--)
                     exch(arr,j,j-1);
-                }
             }
-        }
-
     }
     private static boolean less(Comparable a,Comparable b){
         //返回一个元素比较的boolean
