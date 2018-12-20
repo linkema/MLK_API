@@ -15,7 +15,13 @@ public class InsertSort {
                 //找到元素插入到合适的位置的索引
                 for (int j = i; j >0&&less ( arr[j],arr[j-1] ); j--)
                     exch(arr,j,j-1);
-            }
+               //将数组中较大元素向右移动
+            /*for (int j = i; j > 0&&less ( arr[i],arr[i-1] ); j--) {
+                Comparable temp = arr[j];
+                arr[j]=arr[j-1];
+                arr[j-1]=temp;
+            }*/
+        }
     }
     private static boolean less(Comparable a,Comparable b){
         //返回一个元素比较的boolean
